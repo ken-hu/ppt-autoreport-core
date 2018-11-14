@@ -27,7 +27,6 @@ import java.util.Map;
  * <b>Creation Time:</b> 2018/10/23 22:42.
  *
  * @author Hu Weihui
- * @since nile-cmszbs-szcst-be 0.1.0
  */
 public class ConfigResolver {
 
@@ -44,6 +43,15 @@ public class ConfigResolver {
     private static final String TABLE_SQL = "table.sql";
 
 
+    /**
+     * 分析PPT配置文件.
+     *
+     * @param templateFilePath the template file path
+     * @param paramsMap        the params map
+     * @return the map
+     * @throws IOException the io exception
+     * @since hui_project 1.0.0
+     */
     public Map<Integer, SlideData> analysisPowerPointConfig(String templateFilePath, Map<String, Object> paramsMap) throws IOException {
         Map<Integer, SlideData> slideDataMap = new HashMap<>();
 
@@ -59,6 +67,15 @@ public class ConfigResolver {
     }
 
 
+    /**
+     * 读取每页配置文件.
+     *
+     * @param slide     the slide
+     * @param paramsMap the params map
+     * @return the slide data
+     * @throws IOException the io exception
+     * @since hui_project 1.0.0
+     */
     private SlideData loadSlideConfig(XSLFSlide slide, Map<String, Object> paramsMap) throws IOException {
         SlideData slideData = new SlideData();
         List<ChartData> chartDataList = new ArrayList<>();
@@ -126,6 +143,14 @@ public class ConfigResolver {
 
         return new ArrayList<>();
     }
+
+    /**
+     * 分析表格数据.
+     *
+     * @param sqlDataList the sql data list
+     * @return the list
+     * @since hui_project 1.0.0
+     */
     private List<TableRowData> analysisTableData(List<Map<String, Object>> sqlDataList){
         List<TableRowData> tableRowDataList = new ArrayList<>();
         for (Map<String, Object> stringObjectMap : sqlDataList) {
@@ -166,6 +191,15 @@ public class ConfigResolver {
     }
 
 
+    /**
+     * 获取表格数据.
+     *
+     * @param chart     the chart
+     * @param paramsMap the params map
+     * @return the data map
+     * @throws IOException the io exception
+     * @since hui_project 1.0.0
+     */
     public List<ChartSeries> getDataMap(XSLFChart chart, Map<String, Object> paramsMap) throws IOException {
         POIXMLDocumentPart excelPart = chart.getRelations().get(0);
         InputStream excelInputStream = excelPart.getPackagePart().getInputStream();
@@ -195,6 +229,15 @@ public class ConfigResolver {
     }
 
 
+    /**
+     * sql获取表数据.
+     *
+     * @param sql            the sql
+     * @param colRowValueMap the col row value map
+     * @param paramsMap      the params map
+     * @return the list
+     * @since hui_project 1.0.0
+     */
     private  List<ChartSeries> analysisGraphData(String sql, Map<String,String> colRowValueMap, Map<String,Object>
             paramsMap) {
         String colName = colRowValueMap.get("col");
@@ -230,6 +273,13 @@ public class ConfigResolver {
         return seriesDataList;
     }
 
+    /**
+     * 配置转成Map
+     *
+     * @param config the config
+     * @return the config
+     * @since hui_project 1.0.0
+     */
     private Map getConfig(String config) {
         config = config.trim();
         Map<String, String> configMap = new HashMap<>();
@@ -251,6 +301,13 @@ public class ConfigResolver {
         return configMap;
     }
 
+
+    /**
+     * 去除配置.
+     *
+     * @param textShape the text shape
+     * @since hui_project 1.0.0
+     */
     public void removePPTConfig(XSLFTextShape textShape) {
         XmlObject[] xmlObjectArray = textShape.getXmlObject().selectPath(XML_OBJ_PATH);
         if (xmlObjectArray.length > 0) {
