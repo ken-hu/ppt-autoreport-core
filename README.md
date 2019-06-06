@@ -1,7 +1,14 @@
 # hui-core-autoreport
+
+# 項目迁移
+2019-06-05 项目全部迁移到码云gitee  
+github不维护  
+项目地址： https://gitee.com/huhui_/hui-core-autoreport
+
 ## 前言
 【core】自动化数据替换生成动态样式模板的PPT
 【实例】放在resources
+
 ## 需求
 需求：模板样式随便变，POI读取模板替换数据生成PPT报告
 
