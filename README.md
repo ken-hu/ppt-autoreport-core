@@ -1,6 +1,6 @@
 # hui-core-autoreport
 ## 介绍
-【core】自动化数据替换生成动态样式模板的PPT
+【core】自动化数据替换生成动态样式模板的PPT  
 【实例】放在resources
 
 ## 使用说明
